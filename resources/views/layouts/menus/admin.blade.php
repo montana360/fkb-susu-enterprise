@@ -47,6 +47,7 @@
 <div class="collapse" id="deposit" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
 		<a class="nav-link" href="{{ route('deposit_requests.index') }}">{{ _lang('Deposit Request') }}</a>
+		<a class="nav-link" href="{{ route('holding_accounts.index') }}">{{ _lang('Staff Deposit Request') }}</a>
 		<a class="nav-link" href="{{ route('deposits.create') }}">{{ _lang('Make Deposit') }}</a>
 		<a class="nav-link" href="{{ route('deposits.index') }}">{{ _lang('Deposit History') }}</a>
 	</nav>

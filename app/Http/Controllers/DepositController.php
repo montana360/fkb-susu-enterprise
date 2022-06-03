@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HoldingAccount;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Notifications\DepositMoney;
@@ -26,12 +27,12 @@ class DepositController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('backend.deposit.list');
+        return view('backend.holding_account.list');
     }
 
     public function get_table_data() {
 
-        $transactions = Transaction::select('transactions.*')
+        $transactions = HoldingAccount::select('transactions.*')
             ->with('user')
             ->with('currency')
             ->where('type', 'Deposit')
@@ -106,25 +107,28 @@ class DepositController extends Controller {
         if (!$user) {
             return back()->with('error', _lang('User Account not found !'))->withInput();
         }
-        
 
-        // $transaction                  = new Transaction();
-        // $transaction->user_id         = $user->id;
-        // $transaction->currency_id     = $request->input('currency_id');
-        // $transaction->amount          = $request->input('amount');
-        // $transaction->dr_cr           = 'cr';
-        // $transaction->type            = 'Deposit';
-        // $transaction->method          = 'Manual';
-        // $transaction->status          = 2;
-        // $transaction->note            = $request->input('note');
-        // $transaction->created_user_id = auth()->id();
-        // $transaction->branch_id       = auth()->user()->branch_id;
+        // $deposit_method = DepositMethod::find(1);
 
-        // $transaction->save();
+        $transaction                  = new HoldingAccount();
+        $transaction->user_id         = $user->id;
+        $transaction->currency_id     = $request->input('currency_id');
+        $transaction->amount          = $request->input('amount');
+        $transaction->dr_cr           = 'cr';
+        $transaction->type            = 'Deposit';
+        $transaction->method          = 'Manual';
+        $transaction->status          = 1;
+        $transaction->note            = $request->input('note');
+        $transaction->created_user_id = auth()->id();
+        $transaction->branch_id       = auth()->user()->branch_id;
 
-        // //try {
+        $transaction->save();
+
+        // dd($transaction);
+
+        // try {
         // $transaction->user->notify(new DepositMoney($transaction));
-        //} catch (\Exception $e) {}
+        // } catch (\Exception $e) {}
 
         if (!$request->ajax()) {
             return back()->with('success', _lang('Deposit made successfully'));

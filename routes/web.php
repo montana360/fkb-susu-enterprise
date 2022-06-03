@@ -185,6 +185,15 @@ Route::middleware(['install'])->group(function () use ($email_verification, $all
                 Route::get('deposit_requests/{id}', 'DepositRequestController@show')->name('deposit_requests.show');
                 Route::get('deposit_requests', 'DepositRequestController@index')->name('deposit_requests.index');
 
+                // staff request
+                Route::post('holding_accounts/get_table_data', 'HoldingAccountController@get_table_data');
+                Route::get('holding_accounts/approve/{id}', 'HoldingAccountController@approve')->name('holding_accounts.approve');
+                Route::get('holding_accounts/reject/{id}', 'HoldingAccountController@reject')->name('holding_accounts.reject');
+                Route::delete('holding_accounts/{id}', 'HoldingAccountController@destroy')->name('holding_accounts.destroy');
+                Route::get('holding_accounts/{id}', 'HoldingAccountController@show')->name('holding_accounts.show');
+                Route::get('holding_accounts', 'HoldingAccountController@index')->name('holding_accounts.index');
+
+
                 //Deposit Controller
                 Route::get('deposits/get_table_data', 'DepositController@get_table_data');
                 Route::resource('deposits', 'DepositController')->except([
