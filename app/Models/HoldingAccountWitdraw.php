@@ -12,4 +12,20 @@ class HoldingAccountWitdraw extends Model
    
     protected $table = 'holding_account_witdraws';
 
+    public function user() {
+        return $this->belongsTo('App\Models\User', 'user_id')->withDefault();
+    }
+
+    public function currency() {
+        return $this->belongsTo('App\Models\Currency', 'currency_id')->withDefault();
+    }
+
+    // public function method() {
+    //     return $this->belongsTo('App\Models\DepositMethod', 'method')->withDefault();
+    // }
+
+    public function getRequirementsAttribute($value) {
+        return json_decode($value);
+    }
+
 }

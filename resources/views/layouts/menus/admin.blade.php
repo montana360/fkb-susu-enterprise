@@ -61,8 +61,9 @@
 </a>
 <div class="collapse" id="withdraw" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 	<nav class="sb-sidenav-menu-nested nav">
-		<a class="nav-link" href="{{ route('withdraw_requests.index') }}">{{ _lang('Withdraw Request') }}</a>
 		<a class="nav-link" href="{{ route('withdraw.create') }}">{{ _lang('Make Withdraw') }}</a>
+		<a class="nav-link" href="{{ route('withdraw_requests.index') }}">{{ _lang('Withdraw Request') }}</a>
+		<a class="nav-link" href="{{ route('holding_account_witdraws.index') }}">{{ _lang('Staff Withdrawal Request') }}</a>
 		<a class="nav-link" href="{{ route('withdraw.index') }}">{{ _lang('Withdraw History') }}</a>
 	</nav>
 </div>
@@ -132,6 +133,11 @@
 <a class="nav-link" href="{{ route('products.index') }}">
 	<div class="sb-nav-link-icon"><i class="icofont-listing-number"></i></div>
 	{{ _lang('Products') }}
+</a>
+
+<a class="nav-link" href="{{ route('bankTransaction.index') }}">
+	<div class="sb-nav-link-icon"><i class="icofont-money"></i></div>
+	{{ _lang('Bank Deposit') }}
 </a>
 
 <a class="nav-link" href="{{ route('branches.index') }}">

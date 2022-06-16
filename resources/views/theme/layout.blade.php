@@ -41,10 +41,10 @@
                     {!! xss_clean(show_navigation(get_option('primary_menu'), 'navbar-nav ml-auto', 'nav-link')) !!}
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link btn-outline-red mr-lg-2" href="{{ route('login') }}"><i class="icofont-lock"></i> Sign In</a></li>
-                        @if(get_option('allow_singup') == 'yes')
+                        <li class="nav-item"><a class="nav-link btn-signup mr-lg-2" href="{{ route('login') }}"><i class="icofont-lock"></i> Sign In</a></li>
+                        <!-- @if(get_option('allow_singup') == 'yes')
                         <li class="nav-item"><a class="nav-link btn-signup mr-lg-2" href="{{ route('register') }}"><i class="icofont-ui-user"></i> Sign Up</a></li>
-                        @endif
+                        @endif -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle btn-outline-red" id="languageSelector" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="icofont-globe"></i>  {{ session('language') =='' ? get_option('language') : session('language') }} <i class="icofont-thin-down"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageSelector">

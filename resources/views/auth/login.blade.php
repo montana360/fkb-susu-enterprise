@@ -80,7 +80,7 @@
                                     {{ _lang('Login') }}
                                 </button>
 
-                                @if(get_option('google_login') == 'enabled')
+                                <!-- @if(get_option('google_login') == 'enabled')
                                     <a href="{{ url('/login/google') }}" class="btn btn-google btn-block"> {{ _lang('Continue With Google') }}</a>
 								@endif
 
@@ -92,7 +92,7 @@
 								<a class="btn btn-link btn-register" href="{{ route('register') }}">
 									{{ _lang('Create Account') }}
 								</a>
-                                @endif
+                                @endif -->
 
                             </div>
                         </div>

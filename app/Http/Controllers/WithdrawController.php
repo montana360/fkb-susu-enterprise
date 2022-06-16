@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\HoldingAccountWitdraw;
 use App\Notifications\WithdrawMoney;
 use DataTables;
 use Illuminate\Http\Request;
@@ -120,23 +121,23 @@ class WithdrawController extends Controller {
             }
         }
 
-        $transaction                  = new Transaction();
+        $transaction                  = new HoldingAccountWitdraw();
         $transaction->user_id         = $user->id;
         $transaction->currency_id     = $request->input('currency_id');
         $transaction->amount          = $request->input('amount');
         $transaction->dr_cr           = 'dr';
         $transaction->type            = 'Withdraw';
         $transaction->method          = 'Manual';
-        $transaction->status          = 2;
+        $transaction->status          = 1;
         $transaction->note            = $request->input('note');
         $transaction->created_user_id = auth()->id();
         $transaction->branch_id       = auth()->user()->branch_id;
 
         $transaction->save();
 
-        try {
-            $transaction->user->notify(new WithdrawMoney($transaction));
-        } catch (\Exception $e) {}
+        // try {
+        //     $transaction->user->notify(new WithdrawMoney($transaction));
+        // } catch (\Exception $e) {}
 
         if (!$request->ajax()) {
             return back()->with('success', _lang('Withdraw made successfully'));

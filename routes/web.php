@@ -54,6 +54,9 @@ Route::middleware(['install'])->group(function () use ($email_verification, $all
                  //Product Controller
                  Route::resource('products', 'ProductController');
 
+                 //Product Controller
+                 Route::resource('bankTransaction', 'BankTransactionController');
+
                  //Department Controller
                  Route::resource('departments', 'DepartmentController');
 
@@ -207,6 +210,14 @@ Route::middleware(['install'])->group(function () use ($email_verification, $all
                 Route::delete('withdraw_requests/{id}', 'WithdrawRequestController@destroy')->name('withdraw_requests.destroy');
                 Route::get('withdraw_requests/{id}', 'WithdrawRequestController@show')->name('withdraw_requests.show');
                 Route::get('withdraw_requests', 'WithdrawRequestController@index')->name('withdraw_requests.index');
+
+                //staff Requests
+                Route::post('holding_account_witdraw/get_table_data', 'HoldingAccountWitdrawController@get_table_data');
+                Route::get('holding_account_witdraws/approve/{id}', 'HoldingAccountWitdrawController@approve')->name('holding_account_witdraws.approve');
+                Route::get('holding_account_witdraws/reject/{id}', 'HoldingAccountWitdrawController@reject')->name('holding_account_witdraws.reject');
+                Route::delete('holding_account_witdraws/{id}', 'HoldingAccountWitdrawController@destroy')->name('holding_account_witdraws.destroy');
+                Route::get('holding_account_witdraws/{id}', 'HoldingAccountWitdrawController@show')->name('holding_account_witdraws.show');
+                Route::get('holding_account_witdraws', 'HoldingAccountWitdrawController@index')->name('holding_account_witdraws.index');
 
                 //Withdraw Controller
                 Route::get('withdraw/get_table_data', 'WithdrawController@get_table_data');
